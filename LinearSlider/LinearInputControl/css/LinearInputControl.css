@@ -1,0 +1,120 @@
+.SampleNamespace\.LinearInputControl input[type=range].linearslider {   
+   margin: 0; /* Remove any margins */
+   padding: 0; /* Remove any padding */
+   width: 100%; /* Make the slider full width */
+   background: transparent;
+   -webkit-appearance: none; /* Remove default styling for WebKit browsers */
+   height: 24px; /* Set the height of the slider */
+   -webkit-tap-highlight-color: transparent; /* Remove highlight color when tapping on touch devices */
+   transition: all 0.3s ease; /* Smooth transition for any changes */
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider:focus {
+   outline: none; /* Remove the default focus outline */
+   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Add a soft blue glow when focused */
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-webkit-slider-runnable-track {   
+   background: linear-gradient(90deg, #4CAF50, #00BCD4); /* Gradient track for a modern look */
+   height: 6px; /* Increase the height of the track */
+   cursor: pointer;
+   border-radius: 3px; /* Rounded track edges */
+   transition: background 0.3s ease; /* Smooth transition for background changes */
+}   
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-webkit-slider-thumb {   
+   background: #FF5722; /* Thumb color */
+   border: 2px solid #FFC107; /* Border around the thumb */
+   height: 20px;
+   width: 20px;
+   border-radius: 50%; /* Fully round thumb */
+   cursor: pointer;
+   opacity: 1;
+   -webkit-appearance: none;
+   margin-top: -7px; /* Adjust thumb position */
+   transition: transform 0.3s ease, background 0.3s ease; /* Smooth transition for interactions */
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-webkit-slider-thumb:hover {
+   transform: scale(1.2); /* Slightly enlarge the thumb on hover */
+   background: #FF9800; /* Change thumb color on hover */
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-moz-range-track {   
+   background: linear-gradient(90deg, #4CAF50, #00BCD4);
+   height: 6px;
+   cursor: pointer;
+   border-radius: 3px;
+   transition: background 0.3s ease;
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-moz-range-thumb {   
+   background: #FF5722;
+   border: 2px solid #FFC107;
+   height: 20px;
+   width: 20px;
+   border-radius: 50%;
+   cursor: pointer;
+   opacity: 1;
+   -webkit-appearance: none;
+   margin-top: -7px;
+   transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-moz-range-thumb:hover {
+   transform: scale(1.2);
+   background: #FF9800;
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-ms-track {   
+   background: linear-gradient(90deg, #4CAF50, #00BCD4);
+   height: 6px;
+   cursor: pointer;
+   border-radius: 3px;
+   transition: background 0.3s ease;
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-ms-thumb {   
+   background: #FF5722;
+   border: 2px solid #FFC107;
+   height: 20px;
+   width: 20px;
+   border-radius: 50%;
+   cursor: pointer;
+   opacity: 1;
+   -webkit-appearance: none;
+   transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.SampleNamespace\.LinearInputControl input[type=range].linearslider::-ms-thumb:hover {
+   transform: scale(1.2);
+   background: #FF9800;
+}
+
+/* Add some spacing around the slider for a cleaner layout */
+.SampleNamespace\.LinearInputControl {
+   padding: 10px 0;
+}
+
+/* Label styling */
+.SampleNamespace\.LinearInputControl label {
+   font-family: 'Arial', sans-serif;
+   font-size: 14px;
+   color: #333;
+   margin-bottom: 5px;
+   display: block;
+}
+
+/* Optional: Add a subtle animation to the label */
+.SampleNamespace\.LinearInputControl label.fade-in {
+   animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+   from {
+       opacity: 0;
+   }
+   to {
+       opacity: 1;
+   }
+}
