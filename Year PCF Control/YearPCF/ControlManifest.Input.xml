@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="yearControl" constructor="YearPCF" version="0.0.1" display-name-key="YearPCF" description-key="YearPCF description" control-type="standard" >
+   
+    <external-service-usage enabled="false">
+      <!--UNCOMMENT TO ADD EXTERNAL DOMAINS
+      <domain></domain>
+      <domain></domain>
+      -->
+    </external-service-usage>
+    <property name="selectedYear" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+
+    <type-group name="text">
+    <type>SingleLine.Text</type>
+    </type-group>
+    <property name="controlValue"
+   display-name-key="Control Value"
+   description-key="Control value description."
+   of-type-group="text"
+   usage="bound"
+   required="true" />
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="./YearPCFControl.css" order="1" />
+    </resources>
+    <!-- <feature-usage>
+      <uses-feature name="Device.captureAudio" required="true" />
+      <uses-feature name="Device.captureImage" required="true" />
+      <uses-feature name="Device.captureVideo" required="true" />
+      <uses-feature name="Device.getBarcodeValue" required="true" />
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Device.pickFile" required="true" />
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage> -->
+  </control>
+</manifest>

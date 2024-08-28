@@ -1,0 +1,37 @@
+/* YearPCFControl.css */
+
+/* Style for the label */
+.YearDropdownLabel {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    color: #323130; /* Dark gray color */
+    margin-bottom: 8px;
+    display: block;
+}
+select option:disabled {
+    color: #999999; /* Light gray to indicate it's a placeholder */
+}
+/* Style for the dropdown */
+select {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #c8c6c4; /* Light gray border */
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #323130; /* Dark gray color */
+    width: 100%;
+}
+
+/* Hover effect for the dropdown */
+select:hover {
+    border-color: #605e5c; /* Slightly darker gray on hover */
+}
+
+/* Focus effect for the dropdown */
+select:focus {
+    outline: none;
+    border-color: #0078d4; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 120, 212, 0.5); /* Blue shadow on focus */
+}
