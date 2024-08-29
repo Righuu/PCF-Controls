@@ -13,38 +13,60 @@ export class YearPCF implements ComponentFramework.StandardControl<IInputs, IOut
     {
 
     }
-    public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement): void
+    public async init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement): Promise<void>
     {
         this.dropdown = document.createElement("select");
         this._notifyOutputChanged = notifyOutputChanged;
         this._refreshData = this.refreshData.bind(this);
         const defaultOption = document.createElement("option");
+        this._context = context;
+       
     defaultOption.value = "";
     defaultOption.text = "Select a Year";
     defaultOption.disabled = false;
     defaultOption.selected = false;
     this.dropdown.appendChild(defaultOption);
-        // Add some options to the dropdown (for example, a range of years)
-        const currentYear = new Date().getFullYear();
-        for (let year = currentYear - 10; year <= currentYear; year++) {
+     // Add some options to the dropdown (for example, a range of years)
+      const currentYear = new Date().getFullYear();
+   
+      try {
+        const response = await this._context.webAPI.retrieveMultipleRecords("bcb_appconfig", `?$filter=bcb_name eq 'Year Configuration'&$top=1`);
+        if (response.entities && response.entities.length > 0) {
+            const data = response.entities[0];
+            const jsonObject = JSON.parse(data.bcb_attribute1);
+            const startYearData = jsonObject.startYear;
+            const endYearData = jsonObject.endYear;
+            const differenceYear = endYearData - startYearData;
+            for (let year = endYearData - differenceYear; year <= endYearData; year++) {
+                const option = document.createElement("option");
+                option.value = year.toString();
+                option.text = year.toString();
+                this.dropdown.appendChild(option);
+            }
+            const selectedValue = context.parameters.controlValue.formatted ? context.parameters.controlValue.formatted : new Date().getFullYear().toString();
+            this.dropdown.value = selectedValue;
+        } else {
+            for (let year = new Date().getFullYear() - 10; year <= new Date().getFullYear(); year++) {
+                const option = document.createElement("option");
+                option.value = year.toString();
+                option.text = year.toString();
+                this.dropdown.appendChild(option);
+            }
+            const selectedValue = context.parameters.controlValue.formatted ? context.parameters.controlValue.formatted : new Date().getFullYear().toString();
+            this.dropdown.value = selectedValue;
+        }
+    } catch (error) {
+        for (let year = new Date().getFullYear() - 10; year <= new Date().getFullYear(); year++) {
             const option = document.createElement("option");
             option.value = year.toString();
             option.text = year.toString();
             this.dropdown.appendChild(option);
         }
-        const selectedValue = context.parameters.controlValue.formatted ? context.parameters.controlValue.formatted : currentYear.toString();
+        const selectedValue = context.parameters.controlValue.formatted ? context.parameters.controlValue.formatted : new Date().getFullYear().toString();
         this.dropdown.value = selectedValue;
-
-        this.labelElement = document.createElement("label");
-this.labelElement.setAttribute("class", "YearDropdownLabel");
-this.labelElement.setAttribute("id", "yearLabel");
-if(this.dropdown.value != null)
-    this.labelElement.innerHTML = "Selected Year: ".concat(this.dropdown.value);
-else
-this.labelElement.textContent = "Select Year:";
+    }
 // Append the elements to the control's container
 this.container = container;
-this.container.appendChild(this.labelElement);
 this.container.appendChild(this.dropdown);
 
 // Add event listener to handle dropdown changes
@@ -52,7 +74,6 @@ this.dropdown.addEventListener("change", this._refreshData);
     }
     public refreshData(evt: Event): void {
         this._value = this.dropdown.value;
-        this.labelElement.innerHTML = `Selected Year: ${this.dropdown.value}`;
         this._notifyOutputChanged();
      }
     public updateView(context: ComponentFramework.Context<IInputs>): void
